@@ -1,0 +1,62 @@
+@extends('layout/master_layout')
+@section('contents')
+<div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="card shadow-lg border-0 rounded-lg  mb-4">
+                                    <div class="card-header">
+                                        <h3 class="text-center font-weight-light my-4">Categories Update</h3></div>
+                                    <div class="card-body">
+                                        <form action="/categories/store" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @foreach($data as $value)
+                                                        <input type="hidden" name="cate_id" value="{{$value->id}}">
+                                                        <label class="small mb-1" for="inputFirstName">Name</label>
+                                                        <input name="name" value="{{$value->name}}" class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputLastName">slug</label>
+                                                        <input name="slug" value="{{$value->slug}}" class="form-control py-4" id="inputLastName" type="text" placeholder="Enter description" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="status" class="small mb-1 form-control" for="inputEmailAddress">
+                                                    @if($value->status=="1")
+                                                    <option value="1" selected>Active</option>
+                                                    @endif
+                                                    <option value="1">Active</option>
+                                                    @if($value->status == "0")
+                                                    <option value="0" selected>block</option>
+                                                    @endif
+                                                    <option value="0">block</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputPassword">Picture</label>
+                                                        <input class="form-control py-4" value="{{$value->picture}}" type="file" name="picture" placeholder="Enter password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-4 mb-0">
+                                                <input type="submit" class="btn btn-primary btn-block" name="submit" value="Update">
+                                            </div>
+                                            @endforeach
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+@endsection
